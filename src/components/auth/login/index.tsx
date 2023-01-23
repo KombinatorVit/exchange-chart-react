@@ -1,7 +1,9 @@
 import React, {FC} from 'react';
 import {Button, TextField, Typography} from "@mui/material";
+import {LoginPageType} from "../../../common/types";
 
-const LoginPage: FC<any> = ({setEmail, setPassword}) => {
+
+const LoginPage: FC<LoginPageType> = ({setEmail, setPassword}): JSX.Element => {
     return (
         <>
             <Typography variant="h2" fontFamily='Poppins' textAlign='center'>Авторизация </Typography>
