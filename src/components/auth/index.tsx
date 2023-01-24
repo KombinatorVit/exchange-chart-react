@@ -1,10 +1,13 @@
 import React, {FormEvent, useState} from 'react';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import LoginPage from "./login";
 import RegisterPage from "./register";
 import './style.scss'
 import {Box} from "@mui/material";
 import {instance} from "../../utils/axios";
+import {useAppDispatch} from "../../utils/hooks";
+import {login} from "../../store/slice/auth";
+import {AppErrors} from "../../common/errors";
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
     const [email, setEmail] = useState('')
@@ -14,28 +17,43 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
     const [username, setUsername] = useState('')
 
     const location = useLocation()
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (location.pathname === '/login') {
-            const userData = {
-                email,
-                password
-            }
-            const user = await instance.post('auth/login', userData)
-            console.log(user.data)
-        } else {
-            if (password === repeatPassword) {
+            try {
                 const userData = {
-                    firstName,
-                    username,
                     email,
                     password
                 }
-                const newUser = await instance.post('auth/register', userData)
-                console.log(newUser.data)
+                const user = await instance.post('auth/login', userData)
+                await dispatch(login(user.data))
+                navigate('/')
+            } catch (error) {
+                return (error as Error).message
+            }
+        } else {
+            if (password === repeatPassword) {
+               try {
+                   const userData = {
+                       firstName,
+                       username,
+                       email,
+                       password
+                   }
+                   const newUser = await instance.post('auth/register', userData)
+
+                   await dispatch(login(newUser.data))
+                   navigate('/')
+               }catch (e) {
+                   return (e as Error).message
+
+               }
+
             } else {
-                throw new Error('Пароли не совпадают! Проверьте, пожалуйста, данныею')
+                throw new Error(AppErrors.PasswordDoNotMatch)
             }
         }
     }
@@ -48,13 +66,14 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
                  alignItems='center' flexDirection='column' maxWidth={640} margin='auto' padding={5} borderRadius={5}
                  boxShadow={'5px 5px 10px #ccc'}>
                 {(location.pathname === '/login' ?
-                    <LoginPage setEmail={setEmail} setPassword={setPassword}/> : location.pathname === '/register' ?
+                    <LoginPage setEmail={setEmail}  navigate={navigate} setPassword={setPassword}/> : location.pathname === '/register' ?
                         <RegisterPage
                             setEmail={setEmail}
                             setPassword={setPassword}
                             setRepeatPassword={setRepeatPassword}
                             setFirstName={setFirstName}
                             setUsername={setUsername}
+                            navigate={navigate}
                         /> : null)}
             </Box>
         </form>

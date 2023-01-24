@@ -3,7 +3,7 @@ import {Button, TextField, Typography} from "@mui/material";
 import {LoginPageType} from "../../../common/types";
 
 
-const LoginPage: FC<LoginPageType> = ({setEmail, setPassword}): JSX.Element => {
+const LoginPage: FC<LoginPageType> = ({setEmail, setPassword, navigate}): JSX.Element => {
     return (
         <>
             <Typography variant="h2" fontFamily='Poppins' textAlign='center'>Авторизация </Typography>
@@ -16,7 +16,7 @@ const LoginPage: FC<LoginPageType> = ({setEmail, setPassword}): JSX.Element => {
             <Button type='submit' sx={{fontFamily: 'Poppins', marginTop: 2, marginBottom: 2, width: '60%'}}
                     variant="contained">Войти</Button>
             <Typography variant="body1" sx={{fontFamily: 'Poppins'}}> У вас нет аккаунта?<span
-                className='incitingText'>Регистрация</span>
+                className='incitingText' onClick={() => navigate('/register')}>Регистрация</span>
             </Typography>
 
         </>

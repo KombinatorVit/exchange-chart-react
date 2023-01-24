@@ -7,7 +7,8 @@ const RegisterPage: React.FC<RegisterPageType> = ({
                                                       setPassword,
                                                       setRepeatPassword,
                                                       setFirstName,
-                                                      setUsername
+                                                      setUsername,
+                                                      navigate
                                                   }): JSX.Element => {
     return (
         <>
@@ -28,7 +29,7 @@ const RegisterPage: React.FC<RegisterPageType> = ({
             <Button type={'submit'} sx={{fontFamily: 'Poppins', marginTop: 2, marginBottom: 2, width: '60%'}}
                     variant="contained">Зарегестрироваться</Button>
             <Typography variant="body1" sx={{fontFamily: 'Poppins'}}> У вас есть аккаунт?<span
-                className='incitingText'>Авторизация</span>
+                className='incitingText' onClick={() => navigate('/login')}>Авторизация</span>
             </Typography>
 
         </>
