@@ -17,7 +17,7 @@ const LayoutComponent = ({children}: ILayout) => {
                 {children}
             </>) :
             (<Box display={isNonMobile ? 'flex' : "block"} width='100%' height='100%'>
-                <SidebarComponent isNonMobile={isNonMobile} drowerWidth='250'
+                <SidebarComponent isNonMobile={isNonMobile} drawerWidth='250'
                                   isOpen={isOpen} setIsOpen={setIsOpen}
                 />
 д
