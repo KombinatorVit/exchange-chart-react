@@ -1,7 +1,8 @@
-import { Theme} from "@mui/material";
+import {makeStyles} from "@mui/styles";
+import {Theme} from "@mui/material";
 import {tokens} from "../../theme";
-import { makeStyles } from '@mui/styles';
-export const useStyles: any = makeStyles((theme: Theme) => {
+
+export const useStyles = makeStyles((theme: Theme) => {
     const colors = tokens(theme.palette.mode)
 
     return(

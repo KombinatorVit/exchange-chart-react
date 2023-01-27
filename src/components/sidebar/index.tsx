@@ -3,6 +3,7 @@ import {useStyles} from "./styles";
 import {
     Box,
     Drawer,
+    Divider,
     IconButton,
     List,
     ListItem,
@@ -20,8 +21,8 @@ import {
 import {useLocation, useNavigate} from "react-router-dom";
 import FlexBetween from "../flex-between";
 import {navMenu} from "../../common/moks/navigate";
-
 import Logo from '../../assets/images/sidebar/logo.svg'
+
 
 const SidebarComponent = (props: any) => {
     const [active, setActive] = useState('')
@@ -30,9 +31,11 @@ const SidebarComponent = (props: any) => {
     const {pathname} = useLocation()
     const navigate = useNavigate()
     const theme = useTheme()
+
     useEffect(() => {
         setActive(pathname.substring(1))
     }, [pathname])
+
     const renderNavMenu = navMenu.map((element): JSX.Element => {
         return (
             <ListItem key={element.id}>
