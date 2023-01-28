@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, TextField, Typography} from "@mui/material";
-import {RegisterPageType} from "../../../common/types";
+import {RegisterPageType} from "../../../common/types/auth";
 
 const RegisterPage: React.FC<RegisterPageType> = ({
                                                       setEmail,

@@ -1,16 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {IAuthState} from "../../../common/types";
+import {IAuthState} from "../../../common/types/auth";
 
-const initialState: IAuthState =
-{
+const initialState: IAuthState = {
     user: {
         id: null,
-            firstName: '',
-            username: '',
-            email: '',
-            createdAt: '',
-            updatedAt: '',
-            watchlist:[
+        firstName: '',
+        username: '',
+        email: '',
+        createdAt: '',
+        updatedAt: '',
+        watchlist: [
             {
                 id: null,
                 name: '',
@@ -21,11 +20,10 @@ const initialState: IAuthState =
             }
         ]
     },
-    isLogged: false,
-
+    isLogged: false
 }
 
- const authSlice = createSlice({
+export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
