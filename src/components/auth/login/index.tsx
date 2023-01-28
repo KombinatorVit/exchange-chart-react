@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Button, TextField, Typography} from "@mui/material";
-import {LoginPageType} from "../../../common/types";
+import {LoginPageType} from "../../../common/types/auth";
 
 
 const LoginPage: FC<LoginPageType> = ({setEmail, setPassword, navigate}): JSX.Element => {
