@@ -20,7 +20,6 @@ function App() {
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <div className="App">
-                    <Home/>
                     <Routes>
                         <Route element={<LayoutComponent/>}>
                             <Route element={<PrivateRoute/>}>
@@ -33,6 +32,8 @@ function App() {
                             <Route path="register" element={<AuthRootComponent/>}/></Route>
 
                     </Routes>
+                    <Home/>
+
                 </div>
 
             </ThemeProvider>
