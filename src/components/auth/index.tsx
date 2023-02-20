@@ -8,6 +8,7 @@ import {instance} from "../../utils/axios";
 import {useAppDispatch} from "../../utils/hooks";
 import {login} from "../../store/slice/auth";
 import {AppErrors} from "../../common/errors";
+import {useForm} from "react-hook-form";
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
     const [email, setEmail] = useState('')
@@ -19,9 +20,16 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
     const location = useLocation()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const {
+        register,
+        formState: {
+            errors
+        }, handleSubmit
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    } = useForm()
+
+
+    const handleSubmitForm = async (data: any) => {
         if (location.pathname === '/login') {
             try {
                 const userData = {
@@ -36,21 +44,21 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
             }
         } else {
             if (password === repeatPassword) {
-               try {
-                   const userData = {
-                       firstName,
-                       username,
-                       email,
-                       password
-                   }
-                   const newUser = await instance.post('auth/register', userData)
+                try {
+                    const userData = {
+                        firstName,
+                        username,
+                        email,
+                        password
+                    }
+                    const newUser = await instance.post('auth/register', userData)
 
-                   await dispatch(login(newUser.data))
-                   navigate('/')
-               }catch (e) {
-                   return (e as Error).message
+                    await dispatch(login(newUser.data))
+                    navigate('/')
+                } catch (e) {
+                    return (e as Error).message
 
-               }
+                }
 
             } else {
                 throw new Error(AppErrors.PasswordDoNotMatch)
@@ -61,12 +69,15 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
     return <div className='root'>
 
 
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit(handleSubmitForm)}>
             <Box display='flex' justifyContent='center'
                  alignItems='center' flexDirection='column' maxWidth={640} margin='auto' padding={5} borderRadius={5}
                  boxShadow={'5px 5px 10px #ccc'}>
                 {(location.pathname === '/login' ?
-                    <LoginPage setEmail={setEmail}  navigate={navigate} setPassword={setPassword}/> : location.pathname === '/register' ?
+                    <LoginPage navigate={navigate}
+                               register={register}
+                               errors={errors}
+                    /> : location.pathname === '/register' ?
                         <RegisterPage
                             setEmail={setEmail}
                             setPassword={setPassword}
