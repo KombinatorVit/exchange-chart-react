@@ -17,11 +17,7 @@ const LoginPage: FC<LoginPageType> = ({navigate, register, errors}): JSX.Element
                 variant="outlined"
                 placeholder="Введите ваш email"
                 helperText={errors.email ? `${errors.email.message}` : ''}
-                {...register('email', {
-                    required: 'Это обязательное поле!',
-                    pattern:
-                        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                })}
+                {...register('email',)}
             />
             <TextField fullWidth={true}
                        error={!!errors.password}
@@ -33,10 +29,7 @@ const LoginPage: FC<LoginPageType> = ({navigate, register, errors}): JSX.Element
                        placeholder="Введите ваш пароль"
                        helperText={errors.password ? `${errors.password.message}` : ''}
 
-                       {...register('password', {
-                           required: 'Это обязательное поле!',
-                           minLength: 6
-                       })}
+                       {...register('password', )}
             />
             <Button type='submit' sx={{fontFamily: 'Poppins', marginTop: 2, marginBottom: 2, width: '60%'}}
                     variant="contained">Войти</Button>

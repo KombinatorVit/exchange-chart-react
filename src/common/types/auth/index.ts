@@ -8,13 +8,12 @@ export type LoginPageType<TFieldValues extends FieldValues = FieldValues,
 
 }
 
-export type RegisterPageType = {
-    setEmail: (e: string) => void
-    setPassword: (e: string) => void
-    setRepeatPassword: (e: string) => void
-    setFirstName: (e: string) => void
-    setUsername: (e: string) => void
+export type RegisterPageType<TFieldValues extends FieldValues = FieldValues,
+    TContext = any,
+    > = {
     navigate: (to: string) => void
+    register: UseFormRegister<TFieldValues>
+    errors: FieldErrors<TFieldValues>
 
 }
 
