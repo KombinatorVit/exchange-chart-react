@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {useStyles} from "./styles";
 import {
     Box,
@@ -15,16 +15,17 @@ import {
 } from '@mui/material';
 import {
     ChevronLeftOutlined,
-    ChevronRightOutlined,
+
     LogoutOutlined
 } from '@mui/icons-material';
 import {useLocation, useNavigate} from "react-router-dom";
 import FlexBetween from "../flex-between";
 import {navMenu} from "../../common/moks/navigate";
 import Logo from '../../assets/images/sidebar/logo.svg'
+import {ISidebarProps} from "../../common/types/sidebar";
 
 
-const SidebarComponent = (props: any) => {
+const SidebarComponent: FC<ISidebarProps> = (props): JSX.Element => {
     const [active, setActive] = useState('')
     const {isNonMobile, drawerWidth, isOpen, setIsOpen} = props
     const classes = useStyles()
@@ -83,7 +84,7 @@ const SidebarComponent = (props: any) => {
                                 </Box>
                                 {!isNonMobile && (
                                     <IconButton onClick={() => setIsOpen(!isOpen)}>
-                                        <ChevronLeftOutlined />
+                                        <ChevronLeftOutlined/>
                                     </IconButton>
                                 )}
                             </FlexBetween>
@@ -97,7 +98,7 @@ const SidebarComponent = (props: any) => {
                             <ListItem>
                                 <ListItemButton className={classes.navItem}>
                                     <ListItemIcon>
-                                        <LogoutOutlined />
+                                        <LogoutOutlined/>
                                     </ListItemIcon>
                                     <ListItemText>
                                         <Typography>Logout</Typography>
