@@ -34,13 +34,14 @@ const SidebarComponent: FC<ISidebarProps> = (props): JSX.Element => {
     const theme = useTheme()
 
     useEffect(() => {
-        setActive(pathname.substring(1))
+        setActive(pathname)
     }, [pathname])
 
     const renderNavMenu = navMenu.map((element): JSX.Element => {
         return (
             <ListItem key={element.id}>
-                <ListItemButton onClick={() => navigate(`${element.path}`)} className={classes.navItem}>
+                <ListItemButton onClick={() => navigate(`${element.path}`)}
+                                className={active === element.path ? `${classes.navItem} ${classes.active}` : classes.navItem}>
                     <ListItemIcon>
                         {element.icon}
                     </ListItemIcon>

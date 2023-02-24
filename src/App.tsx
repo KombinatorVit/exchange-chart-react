@@ -2,13 +2,13 @@ import React from 'react';
 import Home from "./components/home";
 import {Route, Routes} from "react-router-dom";
 import PrivateRoute from "./utils/router/privateRoute";
-import AuthRootComponent from "./components/auth";
+import AuthRootComponent from "./pages/auth";
 import {ColorModeContext, useMode} from './theme'
 import {CssBaseline, ThemeProvider} from '@mui/material'
-import LayoutComponent from "./components/Layout";
-import WatchlistComponent from "./components/watchlist";
-import NewsComponent from "./components/news";
-import SettingsComponent from "./components/settings";
+import LayoutComponent from "./pages/Layout";
+import WatchlistComponent from "./pages/watchlist";
+import NewsComponent from "./pages/news";
+import SettingsComponent from "./pages/settings";
 
 
 function App() {
