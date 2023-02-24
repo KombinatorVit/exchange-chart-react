@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {FC, useContext} from 'react';
 import {AppBar, Box, Grid, IconButton, InputBase, Toolbar, Typography, useTheme} from "@mui/material";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -8,9 +8,10 @@ import {ColorModeContext} from "../../theme";
 import {useStyles} from "./styles";
 import FlexBetween from "../flex-between";
 import {MenuOutlined} from "@mui/icons-material";
+import {ITopBarProps} from "../../common/types/topbar";
 
 
-const TopBarComponent = (props: any) => {
+const TopBarComponent: FC<ITopBarProps> = (props): JSX.Element => {
     const theme = useTheme()
     const colorMode: any = useContext(ColorModeContext)
     const classes = useStyles()
@@ -20,8 +21,8 @@ const TopBarComponent = (props: any) => {
 
         <AppBar className={classes.root} position='static'>
             <Toolbar className={classes.toolbar}>
-                <FlexBetween >
-                    <MenuOutlined className={classes.menuIcon} onClick={()=>setIsOpen(!isOpen)}/>
+                <FlexBetween>
+                    <MenuOutlined className={classes.menuIcon} onClick={() => setIsOpen(!isOpen)}/>
                     <Typography variant={'h3'}>Welcome Vitaliy</Typography>
                 </FlexBetween>
                 <Box display='flex'>

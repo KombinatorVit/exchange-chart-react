@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import TopBarComponent from "../top-bar";
+import React, {FC, useState} from 'react';
+import TopBarComponent from "../../components/top-bar";
 import {Outlet, useLocation} from "react-router-dom";
 import {Box, useMediaQuery} from "@mui/material";
-import SidebarComponent from "../sidebar";
+import SidebarComponent from "../../components/sidebar";
 import {useStyles} from "./styles";
 
-const LayoutComponent = () => {
+const LayoutComponent: FC = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false)
     const location = useLocation()
     const isNonMobile = useMediaQuery('(min-width:600px)')
