@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
 import {TextField, Typography} from "@mui/material";
 import {LoginPageType} from "../../../common/types/auth";
-import AppButton from "../../../components/app-button";
 import {useStyles} from "./styles";
+import AppLoadingButton from "../../../components/loading-button";
 
 
-const LoginPage: FC<LoginPageType> = ({navigate, register, errors}): JSX.Element => {
+const LoginPage: FC<LoginPageType> = ({navigate, register, errors, loading}): JSX.Element => {
 
     const classes = useStyles()
     return (
@@ -35,8 +35,8 @@ const LoginPage: FC<LoginPageType> = ({navigate, register, errors}): JSX.Element
 
                        {...register('password',)}
             />
-            <AppButton type='submit' sx={{fontFamily: 'Poppins', marginTop: 2, marginBottom: 2, width: '60%'}}
-                       variant="contained">Войти</AppButton>
+            <AppLoadingButton loading={loading} type='submit' sx={{marginTop: 2, marginBottom: 2, width: '60%'}}
+                              variant="contained">Войти</AppLoadingButton>
             <Typography variant="body1"> У вас нет аккаунта?<span
                 className={classes.incitingText} onClick={() => navigate('/register')}>Регистрация</span>
             </Typography>

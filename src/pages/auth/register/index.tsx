@@ -1,10 +1,12 @@
 import React from 'react';
-import {Box, Button, TextField, Typography} from "@mui/material";
+import {Box, TextField, Typography} from "@mui/material";
 import {RegisterPageType} from "../../../common/types/auth";
-import AppButton from "../../../components/app-button";
 import {useStyles} from "./styles";
+import AppLoadingButton from "../../../components/loading-button";
 
-const RegisterPage: React.FC<RegisterPageType> = ({navigate, register, errors}): JSX.Element => {
+const RegisterPage: React.FC<RegisterPageType> = ({
+                                                      navigate, register, errors, loading
+                                                  }): JSX.Element => {
 
     const classes = useStyles()
     return (
@@ -66,8 +68,8 @@ const RegisterPage: React.FC<RegisterPageType> = ({navigate, register, errors}):
                     {...register('confirmPassword')}
                 />
             </Box>
-            <AppButton type={'submit'}
-                       variant="contained">Зарегестрироваться</AppButton>
+            <AppLoadingButton type={'submit'} loading={loading}
+                              variant="contained">Зарегестрироваться</AppLoadingButton>
             <Box margin=' 20px 0'>
                 <Typography variant="body1" sx={{fontFamily: 'Poppins'}}> У вас есть аккаунт?<span
                     className={classes.incitingText} onClick={() => navigate('/login')}>Авторизация</span>

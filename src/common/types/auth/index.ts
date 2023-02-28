@@ -1,10 +1,13 @@
 import {FieldErrors, FieldValues, UseFormRegister} from "react-hook-form";
+import {boolean} from "yup";
 
 export type LoginPageType<TFieldValues extends FieldValues = FieldValues,
     TContext = any, > = {
     navigate: (to: string) => void
     register: UseFormRegister<TFieldValues>
-    errors: FieldErrors<TFieldValues>;
+    errors: FieldErrors<TFieldValues>
+    loading: boolean
+
 
 }
 
@@ -14,12 +17,15 @@ export type RegisterPageType<TFieldValues extends FieldValues = FieldValues,
     navigate: (to: string) => void
     register: UseFormRegister<TFieldValues>
     errors: FieldErrors<TFieldValues>
+    loading: boolean
+
 
 }
 
 export interface IAuthState {
     user: IPublicUser,
     isLogged: boolean
+    isLoading: boolean
 }
 
 
@@ -40,4 +46,16 @@ interface IWatchlist {
     createdAt: string,
     updatedAt: string,
     user: number | null
+}
+
+export interface ILoginData {
+    email: string
+    password: string
+}
+
+export interface IRegisterData {
+    email: string
+    password: string
+    firstName: string
+    username: string
 }
