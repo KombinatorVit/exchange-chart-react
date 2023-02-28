@@ -23,7 +23,7 @@ const TopBarComponent: FC<ITopBarProps> = (props): JSX.Element => {
             <Toolbar className={classes.toolbar}>
                 <FlexBetween>
                     <MenuOutlined className={classes.menuIcon} onClick={() => setIsOpen(!isOpen)}/>
-                    <Typography variant={'h3'}>Welcome Vitaliy</Typography>
+                    <Typography variant={'h3'}>Welcome {sessionStorage.getItem('name')}</Typography>
                 </FlexBetween>
                 <Box display='flex'>
                     <Grid onClick={colorMode.toggleColorMode} className={classes.iconBlock}>
