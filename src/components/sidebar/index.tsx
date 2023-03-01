@@ -3,7 +3,6 @@ import {useStyles} from "./styles";
 import {
     Box,
     Drawer,
-    Divider,
     IconButton,
     List,
     ListItem,
@@ -75,7 +74,7 @@ const SidebarComponent: FC<ISidebarProps> = (props): JSX.Element => {
                         <Box>
                             <FlexBetween>
                                 <Box className={classes.brand}>
-                                    <img src={Logo} alt="Logo image"/>
+                                    <img src={Logo} alt="Logo"/>
                                     <Typography
                                         variant='h1'
                                         className={classes.brandTitle}
