@@ -1,11 +1,11 @@
 import React from 'react';
-import Home from "./components/home";
+import Home from "./pages/home";
 import {Route, Routes} from "react-router-dom";
 import PrivateRoute from "./utils/router/privateRoute";
 import AuthRootComponent from "./pages/auth";
 import {ColorModeContext, useMode} from './theme'
 import {CssBaseline, ThemeProvider} from '@mui/material'
-import LayoutComponent from "./pages/Layout";
+import LayoutComponent from "./components/Layout";
 import WatchlistComponent from "./pages/watchlist";
 import NewsComponent from "./pages/news";
 import SettingsComponent from "./pages/settings";
@@ -29,10 +29,11 @@ function App() {
                                 <Route path="/settings" element={<SettingsComponent/>}/>
                             </Route>
                             <Route path="login" element={<AuthRootComponent/>}/>
-                            <Route path="register" element={<AuthRootComponent/>}/></Route>
+                            <Route path="register" element={<AuthRootComponent/>}/>
+                        </Route>
 
                     </Routes>
-                    <Home/>
+
 
                 </div>
 

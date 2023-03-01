@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react';
-import TopBarComponent from "../../components/top-bar";
+import TopBarComponent from "../top-bar";
 import {Outlet, useLocation} from "react-router-dom";
 import {Box, useMediaQuery} from "@mui/material";
-import SidebarComponent from "../../components/sidebar";
+import SidebarComponent from "../sidebar";
 import {useStyles} from "./styles";
 
 const LayoutComponent: FC = (): JSX.Element => {
