@@ -76,3 +76,4 @@ const AreaChart = (props: IAreaChartProps) => {
 }
 
 export default AreaChart
+
