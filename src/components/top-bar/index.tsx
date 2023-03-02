@@ -1,51 +1,53 @@
-import React, {FC, useContext} from 'react';
-import {AppBar, Box, Grid, IconButton, InputBase, Toolbar, Typography, useTheme} from "@mui/material";
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import SearchIcon from '@mui/icons-material/Search';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import {ColorModeContext} from "../../theme";
-import {useStyles} from "./styles";
-import FlexBetween from "../flex-between";
-import {MenuOutlined} from "@mui/icons-material";
-import {ITopBarProps} from "../../common/types/topbar";
+import React, {FC} from 'react'
+import {AppBar, Grid, Toolbar, Typography} from '@mui/material'
+import {MenuOutlined} from '@mui/icons-material'
+import {useStyles} from './styles'
+import FlexBetween from '../flex-between'
+import ThemeSwitcherComponent from '../theme-switcher'
+import SearchBarComponent from '../search-bar'
+import {ITopBarProps} from "../../common/types/top-bar";
 
-
-const TopBarComponent: FC<ITopBarProps> = (props): JSX.Element => {
-    const theme = useTheme()
-    const colorMode: any = useContext(ColorModeContext)
+const TopBarComponent: FC<ITopBarProps> = (
+    props: ITopBarProps,
+): JSX.Element => {
     const classes = useStyles()
-    const {setIsOpen, isOpen} = props
+    const {setIsOpen, isOpen, isNonMobile} = props
 
     return (
-
-        <AppBar className={classes.root} position='static'>
+        <AppBar className={classes.root} position="static">
             <Toolbar className={classes.toolbar}>
-                <FlexBetween>
-                    <MenuOutlined className={classes.menuIcon} onClick={() => setIsOpen(!isOpen)}/>
-                    <Typography variant={'h3'}>Welcome {sessionStorage.getItem('name')}</Typography>
-                </FlexBetween>
-                <Box display='flex'>
-                    <Grid onClick={colorMode.toggleColorMode} className={classes.iconBlock}>
-                        <IconButton className={classes.themeIcon}>
-                            {theme.palette.mode === 'dark' ? (<DarkModeIcon/>) : (<LightModeIcon/>)}
-                        </IconButton>
-                        <IconButton>
-                            <NotificationsNoneIcon/>
-                        </IconButton>
+                <Grid
+                    container
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    <Grid item sm={3} lg={3}>
+                        <FlexBetween>
+                            <MenuOutlined
+                                className={classes.menuIcon}
+                                onClick={() => setIsOpen(!isOpen)}
+                            />
+                            <Typography variant="h3">
+                                Welcome {sessionStorage.getItem('name')}
+                            </Typography>
+                        </FlexBetween>
                     </Grid>
-                    <Grid className={classes.searchBlock}>
-                        <IconButton className={classes.searchIcon}>
-                            <SearchIcon/>
-                        </IconButton>
-                        <InputBase className={classes.searchInput} placeholder='Поиск'/>
-                    </Grid>
-                </Box>
+                    {isNonMobile && (
+                        <Grid
+                            display="flex"
+                            justifyContent="flex-end"
+                            item
+                            sm={9}
+                            lg={9}
+                        >
+                            <ThemeSwitcherComponent/>
+                            <SearchBarComponent/>
+                        </Grid>
+                    )}
+                </Grid>
             </Toolbar>
-
         </AppBar>
+    )
+}
 
-    );
-};
-
-export default TopBarComponent;
+export default TopBarComponent
