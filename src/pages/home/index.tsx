@@ -10,7 +10,7 @@ import { IChartData, ISingleAsset } from '../../common/types/assets'
 import TopPriceComponent from '../../components/top-price'
 import {useAppDispatch, useAppSelector} from "../../utils/hooks";
 
-const Home: FC = (): JSX.Element => {
+const HomePage: FC = (): JSX.Element => {
     const favoriteAssets: IChartData[] = useAppSelector(
         (state) => state.assets.favoriteAssets,
     )
@@ -115,4 +115,4 @@ const Home: FC = (): JSX.Element => {
     )
 }
 
-export default Home
+export default HomePage
