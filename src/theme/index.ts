@@ -1,5 +1,5 @@
-import { createContext, useState, useMemo } from 'react'
-import { createTheme } from '@mui/material'
+import {createContext, useState, useMemo} from 'react'
+import {createTheme} from '@mui/material'
 
 export const tokens = (mode: string) => ({
     ...(mode === 'dark'
@@ -110,11 +110,13 @@ export const themeSettings: any = (mode: string) => {
             fontSize: 14,
             h1: {
                 fontFamily: ['Poppins', 'sans-serif'].join(','),
-                fontSize: 28,
+                fontSize: 40,
+                fontWeight: 600,
             },
             h2: {
                 fontFamily: ['Poppins', 'sans-serif'].join(','),
-                fontSize: 20,
+                fontSize: 35,
+                fontWeight: 600,
             },
             h3: {
                 fontFamily: ['Poppins', 'sans-serif'].join(','),
@@ -129,7 +131,8 @@ export const themeSettings: any = (mode: string) => {
 }
 
 export const ColorModeContext = createContext<{ toggleColorMode: () => void }>({
-    toggleColorMode: () => {},
+    toggleColorMode: () => {
+    },
 })
 
 export const useMode = () => {
