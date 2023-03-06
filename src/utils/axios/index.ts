@@ -7,8 +7,17 @@ const token = sessionStorage.getItem('token')
 export const instance = axios.create({
     baseURL: 'http://localhost:5005',
     timeout: 1000,
-    headers: {'X-Custom-Header': 'foobar'}
+    headers: {
+        'X-Custom-Header': 'foobar',
+    },
+
 });
+
+
+export const newsInstance = axios.create({
+    baseURL: 'https://min-api.cryptocompare.com/data/v2/',
+    timeout: 1000,
+})
 
 
 export const instanceAuth = axios.create({
