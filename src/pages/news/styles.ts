@@ -1,6 +1,6 @@
-import { makeStyles } from '@mui/styles'
-import { tokens } from '../../theme'
-import { Theme } from '@mui/material'
+import {makeStyles} from '@mui/styles'
+import {tokens} from '../../theme'
+import {Theme} from '@mui/material'
 
 export const useStyles = makeStyles((theme: Theme) => {
     const colors = tokens(theme.palette.mode)
@@ -28,7 +28,7 @@ export const useStyles = makeStyles((theme: Theme) => {
             }`,
             padding: '20px 16px',
             marginBottom: 32,
-            minHeight: 270,
+            minHeight: 240,
             border: `1px solid ${colors.borderColor}`,
             borderRadius: 12,
             '& .MuiPaper-root': {
@@ -39,9 +39,16 @@ export const useStyles = makeStyles((theme: Theme) => {
         },
         newsTitle: {
             marginBottom: 32,
+            marginLeft: 35,
+
+        },
+        newsBody: {
+            marginBottom: 32,
+            marginLeft: 35,
         },
         readMore: {
             textAlign: 'center',
+            cursor: "pointer",
         },
     }
 })

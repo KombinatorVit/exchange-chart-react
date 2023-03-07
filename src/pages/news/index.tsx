@@ -18,7 +18,7 @@ const NewsPage = () => {
                 <Box className={classes.newsTitle}>
                     <Typography variant="h3">{element.title}</Typography>
                 </Box>
-                <Box>
+                <Box className={classes.newsBody}>
                     <Typography variant="body1">{element.body}</Typography>
                 </Box>
             </Grid>
