@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { ISingleAsset } from '../../common/types/assets'
+import React, {FC, useState} from 'react'
+import {useNavigate, useParams} from 'react-router-dom'
+import {ISingleAsset} from '../../common/types/assets'
 import {
     Avatar,
     Button,
@@ -11,8 +11,8 @@ import {
     AlertColor,
 } from '@mui/material'
 import FlexBetween from '../../components/flex-between'
-import { useStyles } from './styles'
-import { createWatchListRecord } from '../../store/thunks/assets'
+import {useStyles} from './styles'
+import {createWatchListRecord} from '../../store/thunks/assets'
 import {useAppDispatch, useAppSelector} from "../../utils/hooks";
 
 const SingleAssetPage: FC = (): JSX.Element => {
@@ -20,7 +20,7 @@ const SingleAssetPage: FC = (): JSX.Element => {
     const [severity, setSeverity] = useState<AlertColor>('success')
     const navigate = useNavigate()
     const classes = useStyles()
-    const { id } = useParams()
+    const {id} = useParams()
     const dispatch = useAppDispatch()
     const assetsArray: ISingleAsset[] = useAppSelector(
         (state) => state.assets.assets,
@@ -157,7 +157,7 @@ const SingleAssetPage: FC = (): JSX.Element => {
                         </Button>
                     </Grid>
                     <Snackbar open={open} autoHideDuration={6000}>
-                        <Alert severity={severity} sx={{ width: '100%' }}>
+                        <Alert severity={severity} sx={{width: '100%'}}>
                             Success!
                         </Alert>
                     </Snackbar>
