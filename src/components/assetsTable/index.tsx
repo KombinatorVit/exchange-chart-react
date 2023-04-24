@@ -1,18 +1,11 @@
-import React from 'react'
-import {
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-} from '@mui/material'
-import {useStyles} from './styles'
+import React, {FC} from "react";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from "@mui/material";
+import {useStyles} from "./styles";
+import {ITablePriceData} from "../../common/types/assets";
 
-const AssetsTableComponent = (props: any) => {
-    const {assets} = props
-    const classes = useStyles()
+const AssetsTableComponent: FC<ITablePriceData> = (props: ITablePriceData): JSX.Element => {
+    const {assets} = props;
+    const classes = useStyles();
 
     return (
         <TableContainer component={Paper}>
@@ -30,7 +23,7 @@ const AssetsTableComponent = (props: any) => {
                         <TableRow
                             key={element.name}
                             sx={{
-                                '&:last-child td, &:last-child th': {
+                                "&:last-child td, &:last-child th": {
                                     border: 0,
                                 },
                             }}
@@ -66,7 +59,7 @@ const AssetsTableComponent = (props: any) => {
                 </TableBody>
             </Table>
         </TableContainer>
-    )
-}
+    );
+};
 
-export default AssetsTableComponent
+export default AssetsTableComponent;

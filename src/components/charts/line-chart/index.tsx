@@ -1,17 +1,17 @@
-import React from 'react'
+import React, {FC} from "react";
 import {
-    Chart as ChartJS,
     CategoryScale,
+    Chart as ChartJS,
+    Legend,
     LinearScale,
-    PointElement,
     LineElement,
+    PointElement,
     Title,
     Tooltip,
-    Legend,
-} from 'chart.js'
-import { Line } from 'react-chartjs-2'
-import moment from 'moment'
-import { ILineChartProps } from '../../../common/types/assets'
+} from "chart.js";
+import {Line} from "react-chartjs-2";
+import moment from "moment";
+import {ILineChartProps} from "../../../common/types/assets";
 
 ChartJS.register(
     CategoryScale,
@@ -21,10 +21,10 @@ ChartJS.register(
     Title,
     Tooltip,
     Legend,
-)
+);
 
-const LineChart = (props: ILineChartProps) => {
-    const { data } = props
+const LineChart: FC<ILineChartProps> = (props: ILineChartProps) => {
+    const {data} = props;
 
     const options = {
         responsive: true,
@@ -37,14 +37,14 @@ const LineChart = (props: ILineChartProps) => {
         },
         plugins: {
             legend: {
-                position: 'top' as const,
+                position: "top" as const,
             },
         },
-    }
+    };
 
     const values = {
         labels: data[0].price_chart_data.map((element: any) =>
-            moment(element[0]).format('DD.MM.YY'),
+            moment(element[0]).format("DD.MM.YY"),
         ),
         datasets: [
             {
@@ -54,12 +54,12 @@ const LineChart = (props: ILineChartProps) => {
                 data: data[0].price_chart_data.map(
                     (element: any) => element[1],
                 ),
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: "rgb(255, 99, 132)",
+                backgroundColor: "rgba(255, 99, 132, 0.5)",
             },
         ],
-    }
-    return <Line options={options} data={values} width="100%" height="20%" />
-}
+    };
+    return <Line options={options} data={values} width="100%" height="20%"/>;
+};
 
-export default LineChart
+export default LineChart;

@@ -1,9 +1,9 @@
-import React from 'react'
-import Box from '@mui/material/Box'
-import { TabPanelProps } from '../../common/types/tabs'
+import React, {FC} from "react";
+import Box from "@mui/material/Box";
+import {ITabPanelProps} from "../../common/types/tabs";
 
-const TabPanel = (props: TabPanelProps) => {
-    const { children, value, index, ...other } = props
+const TabPanel: FC<ITabPanelProps> = (props: ITabPanelProps): JSX.Element => {
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -13,9 +13,9 @@ const TabPanel = (props: TabPanelProps) => {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+            {value === index && <Box sx={{p: 3}}>{children}</Box>}
         </div>
-    )
-}
+    );
+};
 
-export default TabPanel
+export default TabPanel;

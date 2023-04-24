@@ -1,33 +1,25 @@
-import React, { useState } from 'react'
-import {
-    Button,
-    Checkbox,
-    FormControlLabel,
-    FormGroup,
-    Grid,
-    Typography,
-    useTheme,
-} from '@mui/material'
-import { useStyles } from './styles'
-import { tokens } from '../../theme'
-import { useNavigate } from 'react-router-dom'
-import { deleteUser } from '../../store/thunks/auth'
+import React, {FC, useState} from "react";
+import {Button, Checkbox, FormControlLabel, FormGroup, Grid, Typography, useTheme,} from "@mui/material";
+import {useStyles} from "./styles";
+import {tokens} from "../../theme";
+import {useNavigate} from "react-router-dom";
+import {deleteUser} from "../../store/thunks/auth";
 import {useAppDispatch} from "../../utils/hooks";
 
-const DeleteUserComponent = () => {
-    const [checked, setChecked] = useState(false)
-    const theme = useTheme()
-    const colors = tokens(theme.palette.mode)
-    const classes = useStyles()
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
+const DeleteUserComponent: FC = (): JSX.Element => {
+    const [checked, setChecked] = useState(false);
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+    const classes = useStyles();
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const handleDelete = () => {
-        dispatch(deleteUser())
-        sessionStorage.removeItem('token')
-        sessionStorage.removeItem('name')
-        navigate('/login')
-    }
+        dispatch(deleteUser());
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("name");
+        navigate("/login");
+    };
 
     return (
         <Grid container className={classes.root}>
@@ -45,7 +37,7 @@ const DeleteUserComponent = () => {
                 <FormGroup>
                     <FormControlLabel
                         sx={{
-                            justifyContent: 'center',
+                            justifyContent: "center",
                         }}
                         control={
                             <Checkbox
@@ -53,7 +45,7 @@ const DeleteUserComponent = () => {
                                 onChange={() => setChecked(!checked)}
                                 sx={{
                                     color: colors.blue,
-                                    '&.Mui-checked': {
+                                    "&.Mui-checked": {
                                         color: colors.blue,
                                     },
                                 }}
@@ -74,7 +66,7 @@ const DeleteUserComponent = () => {
                 </Button>
             </Grid>
         </Grid>
-    )
-}
+    );
+};
 
-export default DeleteUserComponent
+export default DeleteUserComponent;
