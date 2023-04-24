@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
-import Box from '@mui/material/Box'
-import { Grid, useTheme } from '@mui/material'
-import TabPanel from '../../components/tab-panel'
-import { tabProps } from '../../utils/helpers'
-import { useStyles } from './styles'
-import { tokens } from '../../theme'
-import SettingsPersonalInfoComponent from '../../components/settings-personal-info'
-import { getPublicUser } from '../../store/thunks/auth'
+import React, {useEffect, useState} from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import {Grid, useTheme} from "@mui/material";
+import {tabProps} from "../../utils/helpers";
+import {useStyles} from "./styles";
+import {tokens} from "../../theme";
+import {getPublicUser} from "../../store/thunks/auth";
 import {useAppDispatch} from "../../utils/hooks";
+import SettingsPersonalInfoComponent from "../../components/settings-personal-info";
+import TabPanel from "../../components/tab-panel";
+import ChangePasswordComponent from "../../components/change-password";
+import DeleteUserComponent from "../../components/delete-user";
 
 const SettingsPage = () => {
-    const [value, setValue] = useState(0)
-    const dispatch = useAppDispatch()
-    const theme = useTheme()
-    const colors = tokens(theme.palette.mode)
-    const classes = useStyles()
+    const [value, setValue] = useState(0);
+    const dispatch = useAppDispatch();
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+    const classes = useStyles();
 
     useEffect(() => {
-        dispatch(getPublicUser())
-    }, [dispatch])
+        dispatch(getPublicUser());
+    }, [dispatch]);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue)
-    }
+        setValue(newValue);
+    };
 
     return (
         <Grid className={classes.root}>
@@ -47,16 +49,16 @@ const SettingsPage = () => {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <SettingsPersonalInfoComponent />
+                <SettingsPersonalInfoComponent/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                <ChangePasswordComponent/>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                <DeleteUserComponent/>
             </TabPanel>
         </Grid>
-    )
-}
+    );
+};
 
-export default SettingsPage
+export default SettingsPage;
