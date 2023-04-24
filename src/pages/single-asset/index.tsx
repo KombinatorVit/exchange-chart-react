@@ -1,57 +1,55 @@
-import React, {FC, useState} from 'react'
-import {useNavigate, useParams} from 'react-router-dom'
-import {ISingleAsset} from '../../common/types/assets'
-import {
-    Avatar,
-    Button,
-    Grid,
-    Typography,
-    Snackbar,
-    Alert,
-    AlertColor,
-} from '@mui/material'
-import FlexBetween from '../../components/flex-between'
-import {useStyles} from './styles'
-import {createWatchListRecord} from '../../store/thunks/assets'
+import React, {FC, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {ISingleAsset} from "../../common/types/assets";
+import {Alert, AlertColor, Avatar, Button, Grid, Snackbar, Typography,} from "@mui/material";
+import FlexBetween from "../../components/flex-between";
+import {useStyles} from "./styles";
+import {createWatchListRecord} from "../../store/thunks/assets";
 import {useAppDispatch, useAppSelector} from "../../utils/hooks";
 
 const SingleAssetPage: FC = (): JSX.Element => {
-    const [open, setOpen] = useState(false)
-    const [severity, setSeverity] = useState<AlertColor>('success')
-    const navigate = useNavigate()
-    const classes = useStyles()
-    const {id} = useParams()
-    const dispatch = useAppDispatch()
+    const [open, setOpen] = useState(false);
+    const [error, setError] = useState(false);
+
+    const [severity, setSeverity] = useState<AlertColor>("success");
+    const navigate = useNavigate();
+    const classes = useStyles();
+    const {id} = useParams();
+    const dispatch = useAppDispatch();
     const assetsArray: ISingleAsset[] = useAppSelector(
         (state) => state.assets.assets,
-    )
+    );
 
-    const asset = assetsArray.find((element) => element.name === (id as string))
+    const asset = assetsArray.find((element) => element.name === (id as string));
 
     const handleCreateRecord = () => {
         try {
             const data = {
-                name: '',
-                assetId: '',
-            }
+                name: "",
+                assetId: "",
+            };
             if (asset) {
-                data.name = asset.name
-                data.assetId = asset.id
+                data.name = asset.name;
+                data.assetId = asset.id;
             }
-            dispatch(createWatchListRecord(data))
-            setSeverity('success')
-            setOpen(true)
+            dispatch(createWatchListRecord(data));
+            setError(false);
+
+            setSeverity("success");
+            setOpen(true);
             setTimeout(() => {
-                setOpen(false)
-            }, 2000)
+                setOpen(false);
+            }, 2000);
         } catch (e) {
-            setSeverity('error')
-            setOpen(true)
+            setError(true);
+
+            setSeverity("error");
+            setOpen(true);
             setTimeout(() => {
-                setOpen(false)
-            }, 2000)
+                setOpen(false);
+            }, 2000);
         }
-    }
+    };
 
     return (
         <>
@@ -157,14 +155,14 @@ const SingleAssetPage: FC = (): JSX.Element => {
                         </Button>
                     </Grid>
                     <Snackbar open={open} autoHideDuration={6000}>
-                        <Alert severity={severity} sx={{width: '100%'}}>
-                            Success!
+                        <Alert severity={severity} sx={{width: "100%"}}>
+                            {!error ? "Success!" : "Ooops"}
                         </Alert>
                     </Snackbar>
                 </Grid>
             )}
         </>
-    )
-}
+    );
+};
 
-export default SingleAssetPage
+export default SingleAssetPage;

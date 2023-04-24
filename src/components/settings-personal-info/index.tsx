@@ -1,35 +1,37 @@
-import React, {useEffect, useState} from 'react'
-import {Box, Grid, TextField} from '@mui/material'
-import {useStyles} from './styles'
-import AppLoadingButton from '../loading-button'
-import {updateUserInfo} from '../../store/thunks/auth'
+import React, {FC, useEffect, useState} from "react";
+import {Box, Grid, TextField} from "@mui/material";
+import {useStyles} from "./styles";
+import AppLoadingButton from "../loading-button";
+import {getPublicUser, updateUserInfo} from "../../store/thunks/auth";
 import {useAppDispatch, useAppSelector} from "../../utils/hooks";
 
-const SettingsPersonalInfoComponent = () => {
-    const dispatch = useAppDispatch()
-    const classes = useStyles()
-    const [name, setName] = useState('')
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const {user} = useAppSelector((state) => state.auth.user)
+const SettingsPersonalInfoComponent: FC = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+    const classes = useStyles();
+    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const {user} = useAppSelector((state) => state.auth.user);
 
     useEffect(() => {
         if (user) {
-            setName(user.firstName)
-            setUsername(user.username)
-            setEmail(user.email)
+            setName(user.firstName);
+            setUsername(user.username);
+            setEmail(user.email);
         }
-    }, [user])
+    }, [user]);
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault()
+    const handleSubmit = (e: React.SyntheticEvent) => {
+        e.preventDefault();
         const data = {
             firstName: name,
             username: username,
             email: email,
-        }
-        dispatch(updateUserInfo(data))
-    }
+        };
+        dispatch(updateUserInfo(data));
+        dispatch(getPublicUser());
+
+    };
 
     return (
         <Grid
@@ -69,7 +71,7 @@ const SettingsPersonalInfoComponent = () => {
                 </Box>
             </Box>
         </Grid>
-    )
-}
+    );
+};
 
-export default SettingsPersonalInfoComponent
+export default SettingsPersonalInfoComponent;

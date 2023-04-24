@@ -1,10 +1,10 @@
 import React from 'react';
 import {Box, TextField, Typography} from "@mui/material";
-import {RegisterPageType} from "../../../common/types/auth";
+import {IPropsRegister} from "../../../common/types/auth";
 import {useStyles} from "./styles";
 import AppLoadingButton from "../../../components/loading-button";
 
-const RegisterPage: React.FC<RegisterPageType> = ({
+const RegisterPage: React.FC<IPropsRegister> = ({
                                                       navigate, register, errors, loading
                                                   }): JSX.Element => {
 
