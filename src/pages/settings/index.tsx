@@ -3,13 +3,13 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 import { Grid, useTheme } from '@mui/material'
-import TabPanel from '../../components/tab-panel'
 import { tabProps } from '../../utils/helpers'
 import { useStyles } from './styles'
 import { tokens } from '../../theme'
-import SettingsPersonalInfoComponent from '../../components/settings-personal-info'
 import { getPublicUser } from '../../store/thunks/auth'
 import {useAppDispatch} from "../../utils/hooks";
+import SettingsPersonalInfoComponent from "../../components/settings-personal-info";
+import TabPanel from "../../components/tab-panel";
 
 const SettingsPage = () => {
     const [value, setValue] = useState(0)
