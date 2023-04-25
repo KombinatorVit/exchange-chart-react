@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from 'react'
-import { useStyles } from './styles'
+import React, {FC, useEffect, useState} from "react";
+import {useStyles} from "./styles";
 import {
     Box,
     Drawer,
@@ -11,30 +11,36 @@ import {
     ListItemText,
     Typography,
     useTheme,
-} from '@mui/material'
-import { ChevronLeftOutlined, LogoutOutlined } from '@mui/icons-material'
-import { useLocation, useNavigate } from 'react-router-dom'
-import FlexBetween from '../flex-between'
-import { navMenu } from '../../common/moks/navigate'
-import Logo from '../../assets/images/sidebar/logo.svg'
-import { ISidebarProps } from '../../common/types/sidebar'
-import ThemeSwitcher from '../theme-switcher'
-import SearchBarComponent from '../search-bar'
+} from "@mui/material";
+import {ChevronLeftOutlined, LogoutOutlined} from "@mui/icons-material";
+import {useLocation, useNavigate} from "react-router-dom";
+import FlexBetween from "../flex-between";
+import {navMenu} from "../../common/moks/navigate";
+import Logo from "../../assets/images/sidebar/logo.svg";
+import {ISidebarProps} from "../../common/types/sidebar";
+import ThemeSwitcher from "../theme-switcher";
+import SearchBarComponent from "../search-bar";
 
 const SidebarComponent: FC<ISidebarProps> = (
     props: ISidebarProps,
 ): JSX.Element => {
-    const [active, setActive] = useState('')
-    const { isNonMobile, drawerWidth, isOpen, setIsOpen } = props
-    const classes = useStyles()
-    const { pathname } = useLocation()
-    const navigate = useNavigate()
-    const theme = useTheme()
+    const [active, setActive] = useState("");
+    const {isNonMobile, drawerWidth, isOpen, setIsOpen} = props;
+    const classes = useStyles();
+    const {pathname} = useLocation();
+    const navigate = useNavigate();
+    const theme = useTheme();
 
     useEffect(() => {
-        setActive(pathname)
-    }, [pathname])
+        setActive(pathname);
+    }, [pathname]);
 
+
+    const handleLogout = () => {
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("name");
+        navigate("/login");
+    };
     const renderNavMenu = navMenu.map((element): JSX.Element => {
         return (
             <ListItem key={element.id}>
@@ -52,8 +58,8 @@ const SidebarComponent: FC<ISidebarProps> = (
                     </ListItemText>
                 </ListItemButton>
             </ListItem>
-        )
-    })
+        );
+    });
 
     return (
         <Box component="nav">
@@ -65,10 +71,10 @@ const SidebarComponent: FC<ISidebarProps> = (
                     anchor="left"
                     sx={{
                         width: drawerWidth,
-                        '& .MuiDrawer-paper': {
+                        "& .MuiDrawer-paper": {
                             color: theme.palette.secondary.main,
                             backgroundColor: theme.palette.primary.main,
-                            boxSizing: 'border-box',
+                            boxSizing: "border-box",
                             width: drawerWidth,
                         },
                     }}
@@ -77,7 +83,7 @@ const SidebarComponent: FC<ISidebarProps> = (
                         <Box>
                             <FlexBetween>
                                 <Box className={classes.brand}>
-                                    <img src={Logo} alt="Logo" />
+                                    <img src={Logo} alt="Logo"/>
                                     <Typography
                                         variant="h1"
                                         className={classes.brandTitle}
@@ -89,7 +95,7 @@ const SidebarComponent: FC<ISidebarProps> = (
                                     <IconButton
                                         onClick={() => setIsOpen(!isOpen)}
                                     >
-                                        <ChevronLeftOutlined />
+                                        <ChevronLeftOutlined/>
                                     </IconButton>
                                 )}
                             </FlexBetween>
@@ -97,7 +103,7 @@ const SidebarComponent: FC<ISidebarProps> = (
                         <List>
                             {!isNonMobile && (
                                 <ListItem>
-                                    <SearchBarComponent />
+                                    <SearchBarComponent/>
                                 </ListItem>
                             )}
                         </List>
@@ -109,15 +115,17 @@ const SidebarComponent: FC<ISidebarProps> = (
                             {!isNonMobile && (
                                 <ListItem>
                                     <Box padding="5px">
-                                        <ThemeSwitcher />
+                                        <ThemeSwitcher/>
                                     </Box>
                                 </ListItem>
                             )}
                             <ListItem>
-                                <ListItemButton className={classes.navItem}>
-                                    <ListItemIcon>
-                                        <LogoutOutlined />
-                                    </ListItemIcon>
+                                <ListItemButton
+                                    className={classes.navItem}
+                                    onClick={handleLogout}
+                                > <ListItemIcon>
+                                    <LogoutOutlined/>
+                                </ListItemIcon>
                                     <ListItemText>
                                         <Typography>Logout</Typography>
                                     </ListItemText>
@@ -128,7 +136,7 @@ const SidebarComponent: FC<ISidebarProps> = (
                 </Drawer>
             )}
         </Box>
-    )
-}
+    );
+};
 
-export default SidebarComponent
+export default SidebarComponent;
